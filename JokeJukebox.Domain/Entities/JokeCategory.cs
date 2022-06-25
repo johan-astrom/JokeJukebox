@@ -9,6 +9,8 @@ namespace JokeJukebox.Domain.Entities
     public enum JokeCategory
     {
         KnockKnockJokes,
-        BellmanJokes
+        BellmanJokes,
+        NorwegianJokes,
+        Other
     }
 }

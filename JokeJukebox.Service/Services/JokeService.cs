@@ -35,19 +35,32 @@ namespace JokeJukebox.Service.Services
         {
             List<string> bellmanJokeStrings = new()
             {
-                "Bellman",
-                "Rysken",
-                "Tysken",
-                "Norsken",
-                "Torsken"
+                "bellman",
+                "rysken",
+                "tysken",
+                "norsken",
+                "torsken"
             };
 
-            if (witticism.Contains("knock"))
+            List<string> norwegianJokeStrings = new()
+            {
+                "norrmän",
+                "norwegians"
+            };
+
+            if (witticism.ToLower().Contains("knock"))
             {
                 return JokeCategory.KnockKnockJokes;
-            }else if (bellmanJokeStrings.Any(bellmanString => witticism.Contains(bellmanString)){
+            }
+            else if (bellmanJokeStrings.Any(bellmanString => witticism.ToLower().Contains(bellmanString)))
+            {
                 return JokeCategory.BellmanJokes;
             }
+            else if (norwegianJokeStrings.Any(norwegianString => witticism.ToLower().Contains(norwegianString)))
+            {
+                return JokeCategory.NorwegianJokes;
+            }
+            else return JokeCategory.Other;
         }
 
         public JokeGetDto GetRandomJoke()
@@ -60,7 +73,7 @@ namespace JokeJukebox.Service.Services
 
         public JokeGetDto GetRandomJokeByCategory(int category)
         {
-            var jokes = _unitOfWork.JokeRepository.Search(j => j.JokeCategory == (JokeCategory) category, j => j.Author);
+            var jokes = _unitOfWork.JokeRepository.Search(j => j.JokeCategory == (JokeCategory)category, j => j.Author);
             int randomIndex = ExtractRandomIndexFromList(jokes);
             return _mapper.Map<JokeGetDto>(jokes.ToList()[randomIndex]);
         }
