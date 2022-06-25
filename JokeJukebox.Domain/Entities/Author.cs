@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace JokeJukebox.Domain.Entities
 {
-    internal class Author
+    public class Author
     {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Alias { get; set; }
+        public bool ShowRealName { get; set; }
     }
 }

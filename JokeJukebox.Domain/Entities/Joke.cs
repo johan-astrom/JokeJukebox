@@ -10,5 +10,6 @@ namespace JokeJukebox.Domain.Entities
     {
         public string Witticism { get; set; }
         public JokeCategory JokeCategory { get; set; }
+        public Author Author { get; set; }  
     }
 }
