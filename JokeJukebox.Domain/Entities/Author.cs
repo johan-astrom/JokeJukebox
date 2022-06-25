@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JokeJukebox.Domain.Entities
 {
-    public class Author
+    public class Author : EntityBase
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JokeJukebox.Domain.Entities
 {
-    internal class Joke
+    internal class Joke : EntityBase
     {
         public string Witticism { get; set; }
         public JokeCategory JokeCategory { get; set; }

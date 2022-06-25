@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace JokeJukebox.Domain.Repository
 {
-    internal class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : EntityBase
+    public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : EntityBase
     {
         private readonly JokeJukeboxContext _context;
         private readonly DbSet<TEntity> _set;
