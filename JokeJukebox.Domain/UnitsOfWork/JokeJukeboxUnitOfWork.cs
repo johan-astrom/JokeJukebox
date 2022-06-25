@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace JokeJukebox.Domain.UnitsOfWork
 {
-    public class JokeJukeboxUnitOfWork : IDisposable
+    public class JokeJukeboxUnitOfWork : IDisposable, IJokeJukeboxUnitOfWork
     {
         private JokeJukeboxContext _context;
         private JokeJukeboxRepository<Author> _authorRepository;
@@ -31,7 +31,7 @@ namespace JokeJukebox.Domain.UnitsOfWork
         {
             get
             {
-                if(this._jokeRepository == null)
+                if (this._jokeRepository == null)
                 {
                     return new JokeJukeboxRepository<Joke>(_context);
                 }
@@ -57,15 +57,15 @@ namespace JokeJukebox.Domain.UnitsOfWork
             {
                 if (disposing)
                 {
-                    _context.Dispose(); 
+                    _context.Dispose();
                 }
             }
-            this._disposed = true;  
+            this._disposed = true;
         }
 
         public void Dispose()
         {
-            Dispose(true);  
+            Dispose(true);
             GC.SuppressFinalize(this);
         }
 

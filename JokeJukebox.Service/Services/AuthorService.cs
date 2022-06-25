@@ -6,29 +6,30 @@ using System.Threading.Tasks;
 using AutoMapper;
 using JokeJukebox.Domain.Entities;
 using JokeJukebox.Domain.Repository;
+using JokeJukebox.Domain.UnitsOfWork;
 using JokeJukebox.Shared.DTO;
 
 namespace JokeJukebox.Service.Services
 {
     public class AuthorService : IAuthorService
     {
-        private readonly IJokeJukeboxRepository<Author> _repository;
+        private readonly IJokeJukeboxUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public AuthorService(IJokeJukeboxRepository<Author> repository, IMapper mapper)
+        public AuthorService(IJokeJukeboxUnitOfWork unitOfWork, IMapper mapper)
         {
-            _repository = repository;
+            _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
 
         public AuthorGetDto GetById(long id)
         {
-            return _mapper.Map<AuthorGetDto>(_repository.GetById(id));
+            return _mapper.Map<AuthorGetDto>(_unitOfWork.AuthorRepository.GetById(id));
         }
 
         public AuthorGetDto CreateAuthor(AuthorPostDto authorData)
         {
-            return _mapper.Map<AuthorGetDto>(_repository.Add(_mapper.Map<Author>(authorData)));
+            return _mapper.Map<AuthorGetDto>(_unitOfWork.AuthorRepository.Add(_mapper.Map<Author>(authorData)));
         }
     }
 }

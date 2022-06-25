@@ -7,28 +7,29 @@ using System.Text;
 using System.Threading.Tasks;
 using JokeJukebox.Shared.DTO;
 using AutoMapper;
+using JokeJukebox.Domain.UnitsOfWork;
 
 namespace JokeJukebox.Service.Services
 {
     public class JokeService : IJokeService
     {
-        private readonly IJokeJukeboxRepository<Joke> _repository;
+        private readonly IJokeJukeboxUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public JokeService(IJokeJukeboxRepository<Joke> repository, IMapper mapper)
+        public JokeService(IJokeJukeboxUnitOfWork unitOfWOrk, IMapper mapper)
         {
-            _repository = repository;
+            _unitOfWork = unitOfWOrk;
             _mapper = mapper;
         }
 
         public JokeGetDto CreateJoke(JokePostDto jokeData)
         {
-            return _mapper.Map<JokeGetDto>(_repository.Add(_mapper.Map<Joke>(jokeData)));
+            return _mapper.Map<JokeGetDto>(_unitOfWork.JokeRepository.Add(_mapper.Map<Joke>(jokeData)));
         }
 
         public JokeGetDto GetRandomJoke()
         {
-            var jokes = _repository.GetAll();
+            var jokes = _unitOfWork.JokeRepository.GetAll();
             int randomIndex = ExtractRandomIndexFromList(jokes);
             return _mapper.Map<JokeGetDto>(jokes.ToList()[randomIndex]);
         }
@@ -36,7 +37,7 @@ namespace JokeJukebox.Service.Services
 
         public JokeGetDto GetRandomJokeByCategory(int category)
         {
-            var jokes = _repository.Search(j => j.JokeCategory == (JokeCategory) category);
+            var jokes = _unitOfWork.JokeRepository.Search(j => j.JokeCategory == (JokeCategory) category);
             int randomIndex = ExtractRandomIndexFromList(jokes);
             return _mapper.Map<JokeGetDto>(jokes.ToList()[randomIndex]);
         }
