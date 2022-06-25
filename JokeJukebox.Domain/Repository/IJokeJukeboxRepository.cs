@@ -7,7 +7,9 @@ namespace JokeJukebox.Domain.Repository
     {
         TEntity Add(TEntity entity);
         TEntity GetById(long id);
-        IEnumerable<TEntity> Search(Expression<Func<TEntity, bool>> searchExpression);
+        TEntity GetById(long id, Expression<Func<TEntity, object>> includeExpression);
+        IEnumerable<TEntity> Search(Expression<Func<TEntity, bool>> searchExpression, Expression<Func<TEntity, object>> includeExpression);
         IEnumerable<TEntity> GetAll();
+        IEnumerable<TEntity> GetAll(Expression<Func<TEntity, object>> includeExpression);
     }
 }
