@@ -21,6 +21,11 @@ namespace JokeJukebox.Service.Services
             _mapper = mapper;
         }
 
+        public AuthorGetDto GetById(long id)
+        {
+            return _mapper.Map<AuthorGetDto>(_repository.GetById(id));
+        }
+
         public AuthorGetDto CreateAuthor(AuthorPostDto authorData)
         {
             return _mapper.Map<AuthorGetDto>(_repository.Add(_mapper.Map<Author>(authorData)));
