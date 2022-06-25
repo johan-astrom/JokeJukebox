@@ -12,10 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\JokeJukebox.Domain\JokeJukebox.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\JokeJukebox.Service\JokeJukebox.Service.csproj" />
   </ItemGroup>
 
 </Project>

@@ -10,7 +10,7 @@ using JokeJukebox.Shared.DTO;
 
 namespace JokeJukebox.Service.Services
 {
-    public class AuthorService
+    public class AuthorService : IAuthorService
     {
         private readonly IJokeJukeboxRepository<Author> _repository;
         private readonly IMapper _mapper;

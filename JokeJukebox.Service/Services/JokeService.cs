@@ -10,7 +10,7 @@ using AutoMapper;
 
 namespace JokeJukebox.Service.Services
 {
-    public class JokeService
+    public class JokeService : IJokeService
     {
         private readonly IJokeJukeboxRepository<Joke> _repository;
         private readonly IMapper _mapper;
@@ -21,6 +21,11 @@ namespace JokeJukebox.Service.Services
             _mapper = mapper;
         }
 
+        public JokeGetDto CreateJoke(JokePostDto jokeData)
+        {
+            return _mapper.Map<JokeGetDto>(_repository.Add(_mapper.Map<Joke>(jokeData)));
+        }
+
         public JokeGetDto GetRandomJoke()
         {
             var jokes = _repository.GetAll();
@@ -29,9 +34,9 @@ namespace JokeJukebox.Service.Services
         }
 
 
-        public JokeGetDto GetRandomJokeByCategory(JokeCategory category)
+        public JokeGetDto GetRandomJokeByCategory(int category)
         {
-            var jokes = _repository.Search(j => j.JokeCategory == category);
+            var jokes = _repository.Search(j => j.JokeCategory == (JokeCategory) category);
             int randomIndex = ExtractRandomIndexFromList(jokes);
             return _mapper.Map<JokeGetDto>(jokes.ToList()[randomIndex]);
         }
