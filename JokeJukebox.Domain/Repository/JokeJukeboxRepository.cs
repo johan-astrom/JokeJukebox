@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 
 namespace JokeJukebox.Domain.Repository
 {
-    public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : EntityBase
+    public class JokeJukeboxRepository<TEntity> : IJokeJukeboxRepository<TEntity> where TEntity : EntityBase
     {
         private readonly JokeJukeboxContext _context;
         private readonly DbSet<TEntity> _set;
 
-        public GenericRepository(JokeJukeboxContext context)
+        public JokeJukeboxRepository(JokeJukeboxContext context)
         {
             _context = context;
             _set = _context.Set<TEntity>();
@@ -38,5 +38,9 @@ namespace JokeJukebox.Domain.Repository
             return _set.Where(searchExpression);
         }
 
+        public IEnumerable<TEntity> GetAll()
+        {
+            return _set;
+        }
     }
 }

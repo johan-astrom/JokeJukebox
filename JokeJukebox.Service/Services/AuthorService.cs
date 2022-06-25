@@ -12,10 +12,10 @@ namespace JokeJukebox.Service.Services
 {
     public class AuthorService
     {
-        private readonly IGenericRepository<Author> _repository;
+        private readonly IJokeJukeboxRepository<Author> _repository;
         private readonly IMapper _mapper;
 
-        public AuthorService(IGenericRepository<Author> repository, IMapper mapper)
+        public AuthorService(IJokeJukeboxRepository<Author> repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
