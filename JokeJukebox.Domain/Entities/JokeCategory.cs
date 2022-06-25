@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace JokeJukebox.Domain.Entities
 {
-    internal class JokeCategory
+    public enum JokeCategory
     {
+        KnockKnockJokes,
+        BellmanJokes
     }
 }
