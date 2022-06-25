@@ -1,4 +1,6 @@
 using JokeJukebox.Domain.Extensions;
+using JokeJukebox.Domain.Mapper;
+using JokeJukebox.Service.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,9 +10,11 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddAutoMapper(typeof(JokeJukeboxProfile));
 
 //Service collection extensions from other assemblies
 builder.Services.AddJokeJukeboxDomain(builder.Configuration);
+builder.Services.AddJokeJukeboxService();
 
 var app = builder.Build();
 
