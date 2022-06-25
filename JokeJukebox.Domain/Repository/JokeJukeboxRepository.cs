@@ -33,14 +33,24 @@ namespace JokeJukebox.Domain.Repository
             return _set.FirstOrDefault(e => e.Id == id);
         }
 
-        public IEnumerable<TEntity> Search(Expression<Func<TEntity, bool>> searchExpression)
+        public TEntity GetById(long id, Expression<Func<TEntity, object>> includeExpression)
         {
-            return _set.Where(searchExpression);
+            return _set.Include(includeExpression).FirstOrDefault(e => e.Id == id);
+        }
+
+        public IEnumerable<TEntity> Search(Expression<Func<TEntity, bool>> searchExpression, Expression<Func<TEntity, object>> includeExpression)
+        {
+            return _set.Include(includeExpression).Where(searchExpression);
         }
 
         public IEnumerable<TEntity> GetAll()
         {
             return _set;
+        }
+
+        public IEnumerable<TEntity> GetAll(Expression<Func<TEntity, object>> includeExpression)
+        {
+            return _set.Include(includeExpression);
         }
     }
 }

@@ -32,7 +32,7 @@ namespace JokeJukebox.Service.Services
 
         public JokeGetDto GetRandomJoke()
         {
-            var jokes = _unitOfWork.JokeRepository.GetAll();
+            var jokes = _unitOfWork.JokeRepository.GetAll(j => j.Author);
             int randomIndex = ExtractRandomIndexFromList(jokes);
             return _mapper.Map<JokeGetDto>(jokes.ToList()[randomIndex]);
         }
@@ -40,7 +40,7 @@ namespace JokeJukebox.Service.Services
 
         public JokeGetDto GetRandomJokeByCategory(int category)
         {
-            var jokes = _unitOfWork.JokeRepository.Search(j => j.JokeCategory == (JokeCategory) category);
+            var jokes = _unitOfWork.JokeRepository.Search(j => j.JokeCategory == (JokeCategory) category, j => j.Author);
             int randomIndex = ExtractRandomIndexFromList(jokes);
             return _mapper.Map<JokeGetDto>(jokes.ToList()[randomIndex]);
         }

@@ -18,7 +18,9 @@ namespace JokeJukebox.Domain.Mapper
             CreateMap<Author, AuthorGetDto>();
 
             CreateMap<JokePostDto, Joke>();
-            CreateMap<Joke, JokeGetDto>();
+            CreateMap<Joke, JokeGetDto>()
+                .ForMember(dest => dest.Author, opt => opt.MapFrom(
+                    src => src.Author.ShowRealName ? src.Author.FirstName + " " + src.Author.LastName : src.Author.Alias));
         }
     }
 }
