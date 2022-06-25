@@ -24,7 +24,10 @@ namespace JokeJukebox.Service.Services
 
         public JokeGetDto CreateJoke(JokePostDto jokeData)
         {
-            return _mapper.Map<JokeGetDto>(_unitOfWork.JokeRepository.Add(_mapper.Map<Joke>(jokeData)));
+            var author = _unitOfWork.AuthorRepository.GetById(jokeData.AuthorId);
+            var joke = _mapper.Map<Joke>(jokeData);
+            joke.Author = author;
+            return _mapper.Map<JokeGetDto>(_unitOfWork.JokeRepository.Add(joke));
         }
 
         public JokeGetDto GetRandomJoke()
