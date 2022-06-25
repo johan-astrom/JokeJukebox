@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace JokeJukebox.Domain.Entities
 {
-    internal class EntityBase
+    public class EntityBase
     {
+        public long Id { get; set; }
     }
 }
