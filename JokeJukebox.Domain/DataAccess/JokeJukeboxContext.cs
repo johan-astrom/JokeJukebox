@@ -9,5 +9,9 @@ namespace JokeJukebox.Domain.DataAccess
 {
     internal class JokeJukeboxContext : DbContext
     {
+        public JokeJukeboxContext(DbContextOptions options) : base(options)
+        {
+        }
+        
     }
 }
