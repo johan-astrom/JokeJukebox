@@ -24,6 +24,7 @@ namespace JokeJukebox.Domain.Repository
         public TEntity Add(TEntity entity)
         {
             var createdEntity = _context.Add(entity);
+            _context.SaveChanges();
             return createdEntity.Entity;
         }
 
