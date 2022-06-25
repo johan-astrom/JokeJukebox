@@ -27,7 +27,27 @@ namespace JokeJukebox.Service.Services
             var author = _unitOfWork.AuthorRepository.GetById(jokeData.AuthorId);
             var joke = _mapper.Map<Joke>(jokeData);
             joke.Author = author;
+            joke.JokeCategory = EvaluateJokeCategory(joke.Witticism);
             return _mapper.Map<JokeGetDto>(_unitOfWork.JokeRepository.Add(joke));
+        }
+
+        private JokeCategory EvaluateJokeCategory(string witticism)
+        {
+            List<string> bellmanJokeStrings = new()
+            {
+                "Bellman",
+                "Rysken",
+                "Tysken",
+                "Norsken",
+                "Torsken"
+            };
+
+            if (witticism.Contains("knock"))
+            {
+                return JokeCategory.KnockKnockJokes;
+            }else if (bellmanJokeStrings.Any(bellmanString => witticism.Contains(bellmanString)){
+                return JokeCategory.BellmanJokes;
+            }
         }
 
         public JokeGetDto GetRandomJoke()
