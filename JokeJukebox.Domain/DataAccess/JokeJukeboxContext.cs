@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using JokeJukebox.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,8 @@ namespace JokeJukebox.Domain.DataAccess
         public JokeJukeboxContext(DbContextOptions options) : base(options)
         {
         }
-        
+
+        public DbSet<Joke> Jokes { get; set; }
+
     }
 }
