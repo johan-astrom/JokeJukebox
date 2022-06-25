@@ -8,7 +8,7 @@ namespace JokeJukebox.API.Controllers
     [Route("/api/[controller]")]
     public class AuthorsController : ControllerBase
     {
-        private IAuthorService _service;
+        private readonly IAuthorService _service;
 
         public AuthorsController(IAuthorService service)
         {

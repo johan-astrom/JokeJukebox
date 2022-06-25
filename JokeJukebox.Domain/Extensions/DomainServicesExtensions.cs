@@ -1,4 +1,5 @@
 ﻿using JokeJukebox.Domain.DataAccess;
+using JokeJukebox.Domain.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,8 +15,10 @@ namespace JokeJukebox.Domain.Extensions
     {
         public static IServiceCollection AddJokeJukeboxDomain(this IServiceCollection services, IConfiguration config)
         {
-            return services.AddDbContext<JokeJukeboxContext>(
+            services.AddDbContext<JokeJukeboxContext>(
                 options => options.UseSqlServer(config.GetConnectionString("default")));
+            services.AddScoped(typeof(IJokeJukeboxRepository<>), typeof(JokeJukeboxRepository<>));
+            return services;
         }
     }
 }
