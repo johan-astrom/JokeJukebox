@@ -5,11 +5,12 @@ using Microsoft.AspNetCore.Mvc;
 namespace JokeJukebox.API.Controllers
 {
     [ApiController]
-    public class AuthorController : ControllerBase
+    [Route("/api/[controller]")]
+    public class AuthorsController : ControllerBase
     {
         private IAuthorService _service;
 
-        public AuthorController(IAuthorService service)
+        public AuthorsController(IAuthorService service)
         {
             _service = service;
         }
