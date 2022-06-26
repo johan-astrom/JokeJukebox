@@ -48,6 +48,7 @@ namespace JokeJukebox.App.Controllers
                 AuthorId = viewModel.SignedInUserId
             };
             var result = await _httpClient.PostAsJsonAsync(_url + "/jokes", jokeData);
+            viewModel.NewJoke = "";
             return View("Index", viewModel);
         }
     }
