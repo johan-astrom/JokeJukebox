@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using JokeJukebox.Shared.DTO;
 using AutoMapper;
 using JokeJukebox.Domain.UnitsOfWork;
+using JokeJukebox.Shared.Static;
 
 namespace JokeJukebox.Service.Services
 {
@@ -50,15 +51,15 @@ namespace JokeJukebox.Service.Services
 
             if (witticism.ToLower().Contains("knock"))
             {
-                return JokeCategory.KnockKnockJokes;
+                return JokeCategory.KnockKnockJoke;
             }
             else if (bellmanJokeStrings.Any(bellmanString => witticism.ToLower().Contains(bellmanString)))
             {
-                return JokeCategory.BellmanJokes;
+                return JokeCategory.BellmanJoke;
             }
             else if (norwegianJokeStrings.Any(norwegianString => witticism.ToLower().Contains(norwegianString)))
             {
-                return JokeCategory.NorwegianJokes;
+                return JokeCategory.NorwegianJoke;
             }
             else return JokeCategory.Other;
         }

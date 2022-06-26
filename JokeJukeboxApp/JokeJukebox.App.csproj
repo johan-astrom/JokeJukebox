@@ -11,4 +11,8 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\JokeJukebox.Shared\JokeJukebox.Shared.csproj" />
+  </ItemGroup>
+
 </Project>

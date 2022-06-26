@@ -4,8 +4,14 @@
         ViewData["Title"] = "Jokes";
 }
 
+<link rel="stylesheet" href="JokeJukebox.App.Styles.css"/>
 
 <div class="text-center">
-    <h1 class="display-4">Welcome, @Model.SignedInUserName</h1>
+    <h1 class="display-4 margin-bottom-l">Welcome, @Model.SignedInUserName</h1>
+
+    @Html.BeginForm("ShowRandomJoke", "Jokes", HttpMethod.Post){
+
+    }
+
 
 
