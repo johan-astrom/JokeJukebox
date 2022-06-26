@@ -1,15 +1,41 @@
-﻿@model JokeJukebox.App.Models.JokesViewModel
+﻿@using JokeJukebox.Shared.Static
+@model JokeJukebox.App.Models.JokesViewModel
 
 @{
-        ViewData["Title"] = "Jokes";
+    ViewData["Title"] = "Jokes";
 }
 
-<link rel="stylesheet" href="JokeJukebox.App.Styles.css"/>
+<link rel="stylesheet" href="JokeJukebox.App.Styles.css" />
 
 <div class="text-center">
     <h1 class="display-4 margin-bottom-l">Welcome, @Model.SignedInUserName</h1>
 
-    @Html.BeginForm("ShowRandomJoke", "Jokes", HttpMethod.Post){
+    @using (Html.BeginForm("ShowRandomJoke", "Jokes", HttpMethod.Post)){
+    <div class="margin-bottom-base">
+        @Html.LabelFor(m => m.SelectedJokeCategory)
+        @Html.DropDownListFor(m => m.SelectedJokeCategory, new SelectList(Enum.GetValues(typeof(JokeCategory))), "Select category (optional)")
+    </div>
+
+    @Html.HiddenFor(m => m.SignedInUserId)
+    @Html.HiddenFor(m => m.SignedInUserName)
+    @Html.HiddenFor(m => m.Joke)
+    
+
+    <input class="margin-bottom-base" type="submit" name="RandomJoke" value="Show random joke!" />
+    }
+
+    @if (Model.Joke != null)
+    {
+        <div>
+            <p>@Model.Joke.Witticism</p>
+            <p class="joke-info">Category: @Model.Joke.JokeCategory</p>
+            <p class="joke-info">Author: @Model.Joke.Author</p>
+        </div>
+    }
+
+    @using (Html.BeginForm("AddJoke", "Jokes", HttpMethod.Post))
+    {
+        <h6>Add a joke!</h6>
 
     }
 

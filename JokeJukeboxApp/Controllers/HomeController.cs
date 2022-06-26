@@ -22,6 +22,7 @@ namespace JokeJukeboxApp.Controllers
             return View(viewModel);
         }
 
+        [HttpPost]
         public async Task<IActionResult> SaveUserDetails(HomeViewModel viewModel)
         {
             var response = await _httpClient.PostAsJsonAsync(_url + "/authors", viewModel);

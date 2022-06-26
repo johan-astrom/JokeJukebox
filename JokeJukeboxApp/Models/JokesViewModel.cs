@@ -1,14 +1,15 @@
 ﻿using JokeJukebox.Shared.Static;
+using System.ComponentModel.DataAnnotations;
 
 namespace JokeJukebox.App.Models
 {
     public class JokesViewModel
     {
-        public string Witticism { get; set; }
-        public string JokeCategory { get; set; }
-        public string JokeAuthor { get; set; }
+        public JokeModel Joke { get; set; }
         public string SignedInUserName { get; set; }
         public long SignedInUserId { get; set; }
+
+        [Display(Name = "Select category (optional)")]
         public JokeCategory SelectedJokeCategory { get; set; }
     }
 }

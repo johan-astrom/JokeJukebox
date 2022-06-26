@@ -4,3 +4,11 @@
 .margin-bottom-l{
     margin-bottom: 42px;
 }
+
+.margin-bottom-base {
+    margin-bottom: 16px;
+}
+
+.joke-info {
+    color: #A9A9A9;
+}

@@ -8,6 +8,7 @@ namespace JokeJukebox.Shared.Static
 {
     public enum JokeCategory
     {
+        Any,
         KnockKnockJoke,
         BellmanJoke,
         NorwegianJoke,
