@@ -10,18 +10,19 @@
 <div class="text-center">
     <h1 class="display-4 margin-bottom-l">Welcome, @Model.SignedInUserName</h1>
 
-    @using (Html.BeginForm("ShowRandomJoke", "Jokes", HttpMethod.Post)){
-    <div class="margin-bottom-base">
-        @Html.LabelFor(m => m.SelectedJokeCategory)
-        @Html.DropDownListFor(m => m.SelectedJokeCategory, new SelectList(Enum.GetValues(typeof(JokeCategory))), "Select category (optional)")
-    </div>
+    @using (Html.BeginForm("ShowRandomJoke", "Jokes", HttpMethod.Post))
+    {
+        <div class="margin-bottom-base">
+            @Html.LabelFor(m => m.SelectedJokeCategory)
+            @Html.DropDownListFor(m => m.SelectedJokeCategory, new SelectList(Enum.GetValues(typeof(JokeCategory))), "Select category (optional)")
+        </div>
 
-    @Html.HiddenFor(m => m.SignedInUserId)
-    @Html.HiddenFor(m => m.SignedInUserName)
-    @Html.HiddenFor(m => m.Joke)
-    
+        @Html.HiddenFor(m => m.SignedInUserId)
+        @Html.HiddenFor(m => m.SignedInUserName)
+        @Html.HiddenFor(m => m.Joke)
 
-    <input class="margin-bottom-base" type="submit" name="RandomJoke" value="Show random joke!" />
+
+        <input class="margin-bottom-base" type="submit" name="RandomJoke" value="Show random joke!" />
     }
 
     @if (Model.Joke != null)
@@ -36,7 +37,15 @@
     @using (Html.BeginForm("AddJoke", "Jokes", HttpMethod.Post))
     {
         <h6>Add a joke!</h6>
+        <div class="margin-bottom-base">
+            @Html.TextBoxFor(m => m.NewJoke)
+        </div>
 
+        <input class="margin-bottom-base" type="submit" name="SaveJoke" value="Save joke" />
+
+
+        @Html.HiddenFor(m => m.SignedInUserId)
+        @Html.HiddenFor(m => m.SignedInUserName)
     }
 
 

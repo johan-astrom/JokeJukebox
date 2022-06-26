@@ -19,7 +19,7 @@ namespace JokeJukebox.App.Models
         [Display(Name = "Alias")]
         public string AuthorAlias { get; set; }
 
-        [Display(Name = "Show my real name")]
+        [Display(Name = "Show my real name on joke submission")]
         [JsonPropertyName("ShowRealName")]
         public bool ShowAuthorRealName { get; set; }
     }

@@ -1,4 +1,5 @@
 ﻿using JokeJukebox.App.Models;
+using JokeJukebox.Shared.DTO;
 using JokeJukebox.Shared.Static;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -35,6 +36,18 @@ namespace JokeJukebox.App.Controllers
             {
                 viewModel.Joke = JsonConvert.DeserializeObject<JokeModel>(responseJson);
             }
+            return View("Index", viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddJoke(JokesViewModel viewModel)
+        {
+            var jokeData = new JokePostDto
+            {
+                Witticism = viewModel.NewJoke,
+                AuthorId = viewModel.SignedInUserId
+            };
+            var result = await _httpClient.PostAsJsonAsync(_url + "/jokes", jokeData);
             return View("Index", viewModel);
         }
     }

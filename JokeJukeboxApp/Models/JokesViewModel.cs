@@ -11,5 +11,7 @@ namespace JokeJukebox.App.Models
 
         [Display(Name = "Select category (optional)")]
         public JokeCategory SelectedJokeCategory { get; set; }
+
+        public string NewJoke { get; set; }
     }
 }
