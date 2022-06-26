@@ -1,6 +1,7 @@
 ﻿using JokeJukebox.App.Models;
 using JokeJukeboxApp.Models;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.Diagnostics;
 
 namespace JokeJukeboxApp.Controllers
@@ -8,6 +9,8 @@ namespace JokeJukeboxApp.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly HttpClient _httpClient = new();
+        private readonly string _url = "https://localhost:7055/api";
 
         public HomeController(ILogger<HomeController> logger)
         {
@@ -19,9 +22,19 @@ namespace JokeJukeboxApp.Controllers
             return View(viewModel);
         }
 
-        public IActionResult SaveUserDetails(HomeViewModel viewModel)
+        public async Task<IActionResult> SaveUserDetails(HomeViewModel viewModel)
         {
-            return RedirectToAction("Index", "Jokes");   
+            var response = await _httpClient.PostAsJsonAsync(_url + "/authors", viewModel);
+            var responseString = await response.Content.ReadAsStringAsync();
+            dynamic dynamicObj = JsonConvert.DeserializeObject(responseString);
+            long authorId = dynamicObj.d[0].Id;
+            var jokesViewModel = new JokesViewModel
+            {
+                SignedInUserId = authorId,
+                SignedInUserName = viewModel.
+                AuthorFirstName + " " + viewModel.AuthorLastName
+            };
+            return RedirectToAction("Index", "Jokes", jokesViewModel);   
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
