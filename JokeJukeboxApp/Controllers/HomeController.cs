@@ -1,4 +1,5 @@
-﻿using JokeJukeboxApp.Models;
+﻿using JokeJukebox.App.Models;
+using JokeJukeboxApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -13,14 +14,14 @@ namespace JokeJukeboxApp.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(HomeViewModel viewModel)
         {
-            return View();
+            return View(viewModel);
         }
 
-        public IActionResult Privacy()
+        public IActionResult SaveUserDetails(HomeViewModel viewModel)
         {
-            return View();
+            return RedirectToAction("Index");   
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -1,8 +1,15 @@
-﻿@{
+﻿@model JokeJukebox.App.Models.HomeViewModel
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Joke Jukebox</h1>
+    @using (Html.BeginForm("SaveUserDetails", "Home", FormMethod.Post))
+    {
+        <h3>Please enter your details:</h3>
+        @Html.LabelFor(m => m.AuthorFirstName)
+        @Html.TextBoxFor(m => m.AuthorFirstName)
+    }
 </div>
