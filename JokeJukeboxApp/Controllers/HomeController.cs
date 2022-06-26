@@ -27,7 +27,7 @@ namespace JokeJukeboxApp.Controllers
             var response = await _httpClient.PostAsJsonAsync(_url + "/authors", viewModel);
             var responseString = await response.Content.ReadAsStringAsync();
             dynamic dynamicObj = JsonConvert.DeserializeObject(responseString);
-            long authorId = dynamicObj.d[0].Id;
+            long authorId = dynamicObj.id;
             var jokesViewModel = new JokesViewModel
             {
                 SignedInUserId = authorId,

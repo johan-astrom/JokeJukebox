@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace JokeJukebox.App.Models
 {
@@ -7,19 +8,19 @@ namespace JokeJukebox.App.Models
     {
         public long AuthorId { get; set; }
         [Display(Name ="First name")]
-        [JsonProperty(PropertyName = "FirstName")]
+        [JsonPropertyName("FirstName")]
         public string AuthorFirstName { get; set; }
 
         [Display(Name ="Last name")]
-        [JsonProperty(PropertyName = "LastName")]
+        [JsonPropertyName("LastName")]
         public string AuthorLastName { get; set; }
 
+        [JsonPropertyName("Alias")]
         [Display(Name = "Alias")]
-        [JsonProperty(PropertyName = "Alias")]
         public string AuthorAlias { get; set; }
 
         [Display(Name = "Show my real name")]
-        [JsonProperty(PropertyName = "ShowRealName")]
+        [JsonPropertyName("ShowRealName")]
         public bool ShowAuthorRealName { get; set; }
     }
 }
