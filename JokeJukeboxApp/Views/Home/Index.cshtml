@@ -11,5 +11,13 @@
         <h3>Please enter your details:</h3>
         @Html.LabelFor(m => m.AuthorFirstName)
         @Html.TextBoxFor(m => m.AuthorFirstName)
+        @Html.LabelFor(m => m.AuthorLastName)
+        @Html.TextBoxFor(m => m.AuthorLastName)
+        @Html.LabelFor(m => m.AuthorAlias)
+        @Html.TextBoxFor(m => m.AuthorAlias)
+        @Html.LabelFor(m => m.ShowAuthorRealName)
+        @Html.CheckBoxFor(m => m.ShowAuthorRealName)
+
+        <input type="submit" name="SaveUser" value="Save user details"/>
     }
 </div>

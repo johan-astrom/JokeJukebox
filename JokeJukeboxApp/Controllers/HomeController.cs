@@ -21,7 +21,7 @@ namespace JokeJukeboxApp.Controllers
 
         public IActionResult SaveUserDetails(HomeViewModel viewModel)
         {
-            return RedirectToAction("Index");   
+            return RedirectToAction("Index", "Jokes");   
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
